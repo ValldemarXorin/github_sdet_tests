@@ -1,0 +1,11 @@
+{
+  "bugIssue": {
+    "title": "Bug ${timestamp}",
+    "body": "${faker.lorem}"
+  },
+
+  "featureIssue": {
+    "title": "Feature ${timestamp}",
+    "body": "${faker.lorem}"
+  }
+}

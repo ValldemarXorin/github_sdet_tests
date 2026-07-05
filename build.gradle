@@ -1,16 +1,13 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '4.1.0'
-    id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
-description = 'github_tst_sdet'
+group = 'com.github_tst_sdet'
+version = '1.0.0'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
@@ -18,12 +15,128 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+ext {
+    junitVersion = '5.10.2'
+
+    selenideVersion = '7.9.3'
+
+    restAssuredVersion = '5.5.6'
+
+    jacksonVersion = '2.20.0'
+
+    ownerVersion = '1.0.12'
+
+    allureVersion = '2.29.1'
+
+    lombokVersion = '1.18.38'
+
+    assertjVersion = '3.27.6'
+
+    javafakerVersion = '1.0.2'
+
+    awaitilityVersion = '4.3.0'
+
+    slf4jVersion = '2.0.17'
+
+    logbackVersion = '1.5.18'
+
+    jacksonYamlVersion = '2.17.2'
+
+    caffeineVersion = '3.1.8'
 }
 
-tasks.named('test') {
+dependencies {
+
+    // ===========================
+    // JUnit
+    // ===========================
+
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+
+    // ===========================
+    // UI
+    // ===========================
+
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+
+    // ===========================
+    // API
+    // ===========================
+
+    testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+    testImplementation "io.rest-assured:json-path:${restAssuredVersion}"
+    testImplementation "io.rest-assured:xml-path:${restAssuredVersion}"
+
+    // ===========================
+    // JSON
+    // ===========================
+
+    testImplementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    // ===========================
+    // Configuration
+    // ===========================
+
+    testImplementation "org.aeonbits.owner:owner:${ownerVersion}"
+
+    // ===========================
+    // Assertions
+    // ===========================
+
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+
+    // ===========================
+    // Test Data
+    // ===========================
+
+    testImplementation "com.github.javafaker:javafaker:${javafakerVersion}"
+
+    // ===========================
+    // Awaitility
+    // ===========================
+
+    testImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+
+    // ===========================
+    // Logging
+    // ===========================
+
+    testImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    testRuntimeOnly "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    // ===========================
+    // Allure
+    // ===========================
+
+    testImplementation "io.qameta.allure:allure-junit5:${allureVersion}"
+    testImplementation "io.qameta.allure:allure-selenide:${allureVersion}"
+    testImplementation "io.qameta.allure:allure-rest-assured:${allureVersion}"
+
+    testImplementation "com.github.ben-manes.caffeine:caffeine:${caffeineVersion}"
+
+    // ===========================
+    // Lombok
+    // ===========================
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
     useJUnitPlatform()
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        exceptionFormat "FULL"
+    }
+
+    systemProperty "file.encoding", "UTF-8"
 }

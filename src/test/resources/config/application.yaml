@@ -1,0 +1,16 @@
+environment: local
+
+github:
+  uiBaseUrl: https://github.com
+  apiBaseUrl: https://api.github.com
+
+logging:
+  level: INFO
+
+retry:
+  attempts: 2
+  delayMillis: 500
+
+resources:
+  cacheEnabled: true
+  validateOnLoad: true

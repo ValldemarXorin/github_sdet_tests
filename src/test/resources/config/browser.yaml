@@ -1,0 +1,19 @@
+browser: chrome
+
+headless: false
+
+window:
+  width: 1920
+  height: 1080
+
+timeouts:
+  timeout: 10000
+  pageLoad: 30000
+  polling: 200
+
+remote:
+  enabled: false
+  url: http://localhost:4444/wd/hub
+
+video: true
+screenshots: true

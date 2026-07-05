@@ -1,0 +1,10 @@
+strategy: AUTO
+
+cookie:
+  folder: resources/cookies
+
+ui:
+  loginPage: https://github.com/login
+
+totp:
+  enabled: true

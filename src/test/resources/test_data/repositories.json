@@ -1,0 +1,15 @@
+{
+  "defaultPrivate": {
+    "name": "${faker.company}",
+    "description": "${faker.lorem}",
+    "private": true,
+    "autoInit": false
+  },
+
+  "defaultPublic": {
+    "name": "${faker.company}",
+    "description": "${faker.lorem}",
+    "private": false,
+    "autoInit": true
+  }
+}
