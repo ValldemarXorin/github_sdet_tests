@@ -1,5 +1,6 @@
 package com.github_tst_sdet.configuration.loader;
 
+import com.github_tst_sdet.configuration.constants.ConfigurationConstants;
 import com.github_tst_sdet.configuration.loader.parser.JsonParser;
 import com.github_tst_sdet.configuration.loader.parser.Parser;
 import com.github_tst_sdet.configuration.loader.parser.YamlParser;
@@ -23,10 +24,19 @@ public class Loader {
         parsers.put("json", new JsonParser());
     }
 
-    public Map<String, Object> load(Map<String, Object> pipelineContext) {
-        Path path = Path.of((String) pipelineContext.get("path_to_resource"));
-        Object data = readers.get((String) pipelineContext.get("key_reader")).read(path);
-        return parsers.get((String) pipelineContext.get("key_parser")).parse(data);
+    public Object load(Map<String, Object> pipelineContext) {
+        Path path = Path.of(pipelineContext.get(ConfigurationConstants.RESOURCE_PATH).toString());
+        Object data = readers
+                .get((String) pipelineContext.get(ConfigurationConstants.READER_KEY))
+                .read(path);
+        return parsers
+                .get((String) pipelineContext.get(ConfigurationConstants.PARSER_KEY))
+                .parse(data);
+    }
+
+    public Map<String, Object> loadPipelineContext(Path path) {
+        Object data = readers.get("json").read(path);
+        return (Map<String, Object>) parsers.get("json").parse(data);
     }
 
     public void registerReader(String key, Reader reader) {

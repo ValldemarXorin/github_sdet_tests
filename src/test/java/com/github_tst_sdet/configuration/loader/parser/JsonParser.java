@@ -10,12 +10,9 @@ public class JsonParser implements Parser {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Map<String, Object> parse(Object data) {
+    public Object parse(Object data) {
         try {
-            return objectMapper.readValue(
-                    (String) data,
-                    new TypeReference<Map<String, Object>>() {}
-            );
+            return objectMapper.readValue((String) data, Object.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

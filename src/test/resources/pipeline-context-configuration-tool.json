@@ -1,0 +1,25 @@
+{
+  "entity_index": 0,
+  "random_entity": false,
+
+  "return_list": false,
+  "return_list_size": 1,
+  "random_return_list_size": false,
+
+  "random_bounds": [
+    0,
+    0
+  ],
+
+  "use_cache": true,
+
+  "extensions_priority": [
+    "yaml",
+    "json"
+  ],
+
+  "resources_path": "src/test/resources",
+
+  "reader_key": "yaml",
+  "parser_key": "yaml"
+}

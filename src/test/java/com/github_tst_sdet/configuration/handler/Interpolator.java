@@ -8,11 +8,11 @@ import java.util.List;
 public class Interpolator {
     private List<SubstitutionHandler> substitutionHandlers;
 
-    Interpolator(List<SubstitutionHandler> substitutionHandlers) {
+    public Interpolator(List<SubstitutionHandler> substitutionHandlers) {
         this.substitutionHandlers = substitutionHandlers;
     }
 
-    Interpolator() {
+    public Interpolator() {
         substitutionHandlers = new ArrayList<SubstitutionHandler>();
         substitutionHandlers.add(new EnvHandler());
         substitutionHandlers.add(new SysHandler());

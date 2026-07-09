@@ -9,7 +9,7 @@ public class YamlParser implements Parser {
     private static final Yaml yaml = new Yaml();
 
     @Override
-    public Map<String, Object> parse(Object data) {
+    public Object parse(Object data) {
         return yaml.load((String) data);
     }
 }

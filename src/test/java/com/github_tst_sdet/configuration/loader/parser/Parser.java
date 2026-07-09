@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface Parser {
 
-    public Map<String, Object> parse(Object data);
+    public Object parse(Object data);
 }

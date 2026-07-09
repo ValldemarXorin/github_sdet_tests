@@ -1,4 +1,4 @@
-package com.github_tst_sdet.configuration.convention.annotation;
+package com.github_tst_sdet.configuration.annotation;
 
 import java.lang.annotation.*;
 
